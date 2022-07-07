@@ -1,0 +1,20 @@
+{
+  "name": "data-piper",
+  "version": "1.0.0",
+  "description": "Candidate Search",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js"
+  },
+  "keywords": [],
+  "author": "Jazma Foskin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "pg": "^8.7.3",
+    "sequelize": "^6.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
