@@ -1,4 +1,4 @@
-const dbConnection = require('./index');
+const { dbConnection } = require('./index');
 
 const runSeed = async () => {
 	await dbConnection.sync({ force: true });

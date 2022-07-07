@@ -2,10 +2,9 @@ const Sequelize = require('sequelize');
 
 const dbConnection = new Sequelize(`postgres://localhost:5432/data-piper`);
 
-module.exports = dbConnection;
 
 const Client = dbConnection.define('Client', {
-    Client: {
+	Client: {
 		type: Sequelize.STRING(50),
 		allowNull: false,
 		validate: {
@@ -39,7 +38,7 @@ const Client = dbConnection.define('Client', {
 		},
 	},
     Quantity: {
-        type: Sequelize.FLOAT,
+		type: Sequelize.FLOAT,
 		defaultValue: 1,
 		validate: {
 			min: 0,
@@ -47,3 +46,7 @@ const Client = dbConnection.define('Client', {
 		},
     },
 })
+	module.exports = {
+		dbConnection,
+		Client
+	};
