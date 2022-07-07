@@ -45,6 +45,10 @@ const Client = dbConnection.define('Client', {
 			max: 100,
 		},
     },
+	SkillsNeeded:{
+		type: Sequelize.TEXT,
+		allowNull: false,
+	}
 })
 	module.exports = {
 		dbConnection,
