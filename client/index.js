@@ -2,6 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 render(
-    <h1>Hello again</h1>,
+    <h1>Hello</h1>,
     document.getElementById('main')
 )
