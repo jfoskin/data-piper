@@ -1,7 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import App from './components/App'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
-render(
-    <h1>Hello</h1>,
+ReactDOM.render(
+    <App/>,
     document.getElementById('main')
 )
