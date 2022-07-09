@@ -1,16 +1,13 @@
 {
-  "homepage": "http://jfoskin.github.io/data-piper",
   "name": "data-piper",
   "version": "1.0.0",
   "description": "Candidate Search",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch main.js main.js",
+    "start": "node main.js",
     "seed": "node server/db/seed.js",
     "build": "webpack",
-    "build-watch": "webpack --watch",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build-watch": "webpack --watch"
   },
   "keywords": [],
   "author": "Jazma Foskin",
