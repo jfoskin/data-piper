@@ -59,7 +59,7 @@ export function CandidateTable(props) {
 				setGlobalFilter={setGlobalFilter}
 				globalFilter={state.globalFilter}
 			/>
-			<table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+			<table {...getTableProps()} style={{ border: 'solid 1px blue', padding: '0.5rem' }}>
 				<thead>
 					{headerGroups.map((headerGroup) => (
 						<tr {...headerGroup.getHeaderGroupProps()}>
@@ -67,10 +67,11 @@ export function CandidateTable(props) {
 								<th
 									{...column.getHeaderProps(column.getSortByToggleProps())}
 									style={{
-										borderBottom: 'solid 3px red',
+										borderBottom: 'solid 3px #52A8ff',
 										background: 'aliceblue',
 										color: 'black',
 										fontWeight: 'bold',
+										
 									}}
 								>
 									{column.render('Header')}
@@ -93,9 +94,10 @@ export function CandidateTable(props) {
 									<td
 										{...cell.getCellProps()}
 										style={{
-											padding: '10px',
-											border: 'solid 1px gray',
-											background: 'papayawhip',
+											padding: '20px',
+											border: 'solid 1px navy',
+											background: '#40404008',
+											
 										}}
 									>
 										{cell.render('Cell')}

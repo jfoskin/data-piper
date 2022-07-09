@@ -1,35 +1,38 @@
-import React from "react";
-import axios from "axios";
-import { CandidateTable } from "./CandidateTable";
-
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { CandidateTable } from './CandidateTable';
+import{ fetchCandidates} from '../redux/candidates'
 
 class CandidateList extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            getCandidates: null
-        }
-    }
-    async componentDidMount(){
-        const response = await axios.get('/api/candidate')
-        const data = response.data
-        console.table(`this is in candidatelist component`, data)
-        this.setState({ getCandidates: data})
-    }
-    render(){
-        console.log(this)
-        if(this.state.getCandidates === null){
-            return <h4>Loading...</h4>
-        }
+    componentDidMount() {
+		this.props.allCandidates();
+	}
+    render() {
+        console.log('looking in candidate ist ', this.props)
 
-        return (
-            <div id='candidate-list' >
-                <CandidateTable /> 
+		if (this.props.candidates === null) {
+			return <h4>Loading...</h4>;
+		}
 
-
-            </div>
-        )
-    }
+		return (
+			<div id="candidate-list">
+				<CandidateTable />
+			</div>
+		);
+	}
 }
 
-export default CandidateList;
+const mapState = (state) => {
+	return {
+		candidates: state.candidates,
+	};
+};
+
+const mapDispatch = (dispatch) => {
+	return {
+		allCandidates: () => dispatch(fetchCandidates()),
+	};
+};
+
+export default connect(mapState, mapDispatch)(CandidateList);

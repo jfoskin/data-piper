@@ -12,7 +12,7 @@ export function Filter({
 		setGlobalFilter(value || undefined);
 	}, 300);
 	return (
-		<div>
+		<div className='tableSearch'>
 			<h3>Search:</h3>
 			<input
 				value={value || ""}

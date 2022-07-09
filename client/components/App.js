@@ -9,14 +9,15 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div>
-					<nav>
-						<div className="navContainer">
+					<nav className="navContainer">
+						<div className='link-container'>
+						<div>
 							<span className="navLink1">
                                 {/* this image will be the data piper logo that will also link to home */}
-								{/* <img
-									src="https://fcit.usf.edu/matrix/wp-content/uploads/2017/01/DanceBot-3-LG.gif"
+								<img
+									src="../public/data-piper-icon.png"
 									id="navlogo"
-								/> */}
+								/>
 							</span>
                             {/* this home link will be connected to the logo */}
 							{/* <span>
@@ -33,6 +34,21 @@ class App extends React.Component {
 							{/* <Link className="navLink" to="/projects">
 								Projects
 							</Link> */}
+						</div>
+						<div>
+							<Link className="navLink" to="/candidate">
+								New Candidate
+							</Link>
+                            {/* possibly will add another link that will be a clients list that will then link to another page of candidates based on the client */}
+							{/* <Link className="navLink" to="/projects">
+								Projects
+							</Link> */}
+						</div>
+						</div>
+						<div class="search-container">
+   							<form action="" >
+     							<input type="text" placeholder="Search..." name="search" id='searchNav'/>
+   							</form>
 						</div>
 					</nav>
 					<h2> Welcome to the Candidate Source List </h2>
