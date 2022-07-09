@@ -35,18 +35,15 @@ const deleteCandidate = (candidate) => {
 
 export const fetchCandidates = () => {
 	return async (dispatch) => {
-		const { data } = await axios.get('/api/candidate');
-		console.log(data)
+		const {  } = await axios.get('/api/candidate');
 		dispatch(setCandidates(data));
 	};
 };
 
-export const createCandidate = (candidate, history) => {
+export const createCandidate = (candidate) => {
 	return async (dispatch) => {
 		const { data: created } = await axios.post('/api/candidate', candidate);
-		console.log(data)
 		dispatch(_createCandidate(created));
-		history.push('/');
 	};
 };
 
@@ -69,8 +66,6 @@ export const deleteACandidate = (id, history) => {
 	};
 };
 
-// Take a look at app/redux/index.js to see where this reducer is
-// added to the Redux store with combineReducers
 
 const candidatesReducer = (state = [], action) => {
 	switch (action.type) {

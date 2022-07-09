@@ -12,32 +12,11 @@ router.get('/', async (req, res) => {
 	}
 });
 
-//GET / candidate route that responds with candidate information that matches search
-// router.get('/', async (req, res, next) => {});
-
 
 // POST / candidate
 router.post('/', async (req, res, next) => {
 	try {
-		console.log(req.body);
-		const client = req.body.client
-		const poc = req.body.poc
-		const email = req.body.email
-		const role = req.body.role
-		const urgency = req.body.urgency
-		const quantity = req.body.urgency
-		const skillsNeeded = req.body.skillsNeeded
-
-        const newCandidate = await Client.create({
-			Client: client,
-			POC: poc,
-			Email: email,
-			Role: role,
-			Urgency: urgency,
-			Quantity: quantity,
-			SkillsNeeded: skillsNeeded
-		})
-		console.log(newCandidate)
+        const newCandidate = await Client.create(req.body)
 		res.json(newCandidate)
 	} catch (error) {
 		next(error);

@@ -240,13 +240,12 @@ function CandidateTable(props) {
 
     if (response) {
       const allCandidates = response.data;
-      console.log(' All Candidates: ', allCandidates);
       setCandidates(allCandidates);
     }
   };
 
   const candidatesData = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(() => [...candidates], [candidates]);
-  const candidatesColumns = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(() => candidates[0] ? Object.keys(candidates[0]).filter(key => key !== "id" && key !== "createdAt" && key !== "updatedAt").map(key => {
+  const candidatesColumns = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(() => candidates[0] ? Object.keys(candidates[0]).filter(key => key !== 'id' && key !== 'createdAt' && key !== 'updatedAt').map(key => {
     return {
       Header: key,
       accessor: key
@@ -324,13 +323,13 @@ class CreateCandidate extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor() {
     super();
     this.state = {
-      client: '',
-      poc: '',
-      email: '',
-      role: '',
-      urgency: 'Low',
-      quantity: 1,
-      skillsNeeded: ''
+      Client: '',
+      POC: '',
+      Email: '',
+      Role: '',
+      Urgency: 'Low',
+      Quantity: 1,
+      SkillsNeeded: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -342,63 +341,63 @@ class CreateCandidate extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault();
-    await this.props.createCandidate({ ...this.state
+    this.props.createCandidate({ ...this.state
     });
+    window.location.reload();
   }
 
   render() {
     const {
-      client,
-      poc,
-      email,
-      role,
-      urgency,
-      quantity,
-      skillsNeeded
+      Client,
+      POC,
+      Email,
+      Role,
+      Urgency,
+      Quantity,
+      SkillsNeeded
     } = this.state;
     const {
       handleSubmit,
       handleChange
     } = this;
-    console.log(this.state);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
       id: "project-form",
       onSubmit: handleSubmit
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "client"
     }, "Client Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      name: "client",
+      name: "Client",
       onChange: handleChange,
-      value: client,
+      value: Client,
       required: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "poc"
     }, "Point of Contact:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      name: "poc",
+      name: "POC",
       onChange: handleChange,
-      value: poc,
+      value: POC,
       required: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "email"
     }, "Email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      name: "email",
+      name: "Email",
       onChange: handleChange,
-      value: email,
+      value: Email,
       required: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "role"
     }, "Role:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      name: "role",
+      name: "Role",
       onChange: handleChange,
-      value: role,
+      value: Role,
       required: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "urgency"
     }, "Urgency:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-      name: "urgency",
-      value: urgency,
+      name: "Urgency",
+      value: Urgency,
       onChange: handleChange
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       value: "High"
@@ -411,18 +410,18 @@ class CreateCandidate extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       htmlFor: "quantity"
     }, "Quantity:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "number",
-      name: "quantity",
+      name: "Quantity",
       onChange: handleChange,
-      value: quantity,
+      value: Quantity,
       min: "0",
       max: "100",
       required: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       htmlFor: "skillsNeeded"
     }, "Skills Needed:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      name: "skillsNeeded",
+      name: "SkillsNeeded",
       onChange: handleChange,
-      value: skillsNeeded,
+      value: SkillsNeeded,
       required: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "submit"
@@ -669,21 +668,16 @@ const deleteCandidate = candidate => {
 
 const fetchCandidates = () => {
   return async dispatch => {
-    const {
-      data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/candidate');
-    console.log(data);
+    const {} = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/candidate');
     dispatch(setCandidates(data));
   };
 };
-const createCandidate = (candidate, history) => {
+const createCandidate = candidate => {
   return async dispatch => {
     const {
       data: created
     } = await axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/candidate', candidate);
-    console.log(data);
     dispatch(_createCandidate(created));
-    history.push('/');
   };
 };
 const updateACandidate = (candidate, history) => {
@@ -703,8 +697,7 @@ const deleteACandidate = (id, history) => {
     dispatch(deleteCandidate(candidate));
     history.push('/');
   };
-}; // Take a look at app/redux/index.js to see where this reducer is
-// added to the Redux store with combineReducers
+};
 
 const candidatesReducer = (state = [], action) => {
   switch (action.type) {

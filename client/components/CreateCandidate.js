@@ -6,13 +6,13 @@ class CreateCandidate extends Component {
 	constructor() {
 		super();
 		this.state = {
-			client: '',
-            poc: '',
-            email: '',
-            role: '',
-            urgency: 'Low',
-            quantity: 1,
-            skillsNeeded: '',
+			Client: '',
+            POC: '',
+            Email: '',
+            Role: '',
+            Urgency: 'Low',
+            Quantity: 1,
+            SkillsNeeded: '',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -25,41 +25,41 @@ class CreateCandidate extends Component {
 		});
 	}
 
-	async handleSubmit(evt) {
+	handleSubmit(evt) {
 		evt.preventDefault();
-		await this.props.createCandidate({ ...this.state});
+		this.props.createCandidate({ ...this.state});
+		window.location.reload();
 	}
 
 	render() {
-		const { client, poc, email, role, urgency, quantity, skillsNeeded } = this.state;
+		const { Client, POC, Email, Role, Urgency, Quantity, SkillsNeeded } = this.state;
 		const { handleSubmit, handleChange } = this;
-        console.log(this.state)
 		return (
 			<form id="project-form" onSubmit={handleSubmit}>
 				<label htmlFor="client">Client Name:</label>
-				<input name="client" onChange={handleChange} value={client} required/>
+				<input name="Client" onChange={handleChange} value={Client} required/>
 
                 <label htmlFor='poc'>Point of Contact:</label>
-                <input name='poc' onChange={handleChange} value={poc} required/>
+                <input name='POC' onChange={handleChange} value={POC} required/>
 
                 <label htmlFor='email'>Email:</label>
-                <input name='email' onChange={handleChange} value={email} required/>
+                <input name='Email' onChange={handleChange} value={Email} required/>
 
                 <label htmlFor='role'>Role:</label>
-                <input name='role' onChange={handleChange} value={role}  required/>
+                <input name='Role' onChange={handleChange} value={Role}  required/>
 
                 <label htmlFor='urgency'>Urgency:</label>
-                <select name="urgency" value={urgency} onChange={handleChange} >
+                <select name="Urgency" value={Urgency} onChange={handleChange} >
                     <option value='High'>High</option>
                     <option value='Med'>Med</option>
                     <option value='Low' defaultValue={'Low'}>Low</option>
                 </select>
 
                 <label htmlFor='quantity'>Quantity:</label>
-                <input type='number' name='quantity' onChange={handleChange} value={quantity} min="0" max="100"required/>
+                <input type='number' name='Quantity' onChange={handleChange} value={Quantity} min="0" max="100"required/>
 
                 <label htmlFor='skillsNeeded'>Skills Needed:</label>
-                <input name='skillsNeeded' onChange={handleChange} value={skillsNeeded} required/>
+                <input name='SkillsNeeded' onChange={handleChange} value={SkillsNeeded} required/>
 
 				<button type="submit">Submit</button>
 			</form>

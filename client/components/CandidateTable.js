@@ -13,8 +13,6 @@ function CandidateTable(props) {
 
 		if (response) {
 			const allCandidates = response.data;
-
-			console.log(' All Candidates: ', allCandidates);
 			setCandidates(allCandidates);
 		}
 	};
@@ -24,9 +22,14 @@ function CandidateTable(props) {
 	const candidatesColumns = useMemo(
 		() =>
 			candidates[0]
-				? Object.keys(candidates[0]).filter((key) => key !== "id" && key !== "createdAt" && key !== "updatedAt").map((key) => {
-						return { Header: key, accessor: key };
-				  })
+				? Object.keys(candidates[0])
+						.filter(
+							(key) =>
+								key !== 'id' && key !== 'createdAt' && key !== 'updatedAt'
+						)
+						.map((key) => {
+							return { Header: key, accessor: key };
+						})
 				: [],
 		[candidates]
 	);
@@ -45,7 +48,7 @@ function CandidateTable(props) {
 		prepareRow,
 		preGlobalFilteredRows,
 		setGlobalFilter,
-		state
+		state,
 	} = tableInstance;
 
 	useEffect(() => {
@@ -59,7 +62,15 @@ function CandidateTable(props) {
 				setGlobalFilter={setGlobalFilter}
 				globalFilter={state.globalFilter}
 			/>
-			<table {...getTableProps()} style={{ border: 'solid 1px blue', padding: '0.5rem', marginLeft: '3rem', marginRight: '3rem' }}>
+			<table
+				{...getTableProps()}
+				style={{
+					border: 'solid 1px blue',
+					padding: '0.5rem',
+					marginLeft: '3rem',
+					marginRight: '3rem',
+				}}
+			>
 				<thead>
 					{headerGroups.map((headerGroup) => (
 						<tr {...headerGroup.getHeaderGroupProps()}>
@@ -72,7 +83,6 @@ function CandidateTable(props) {
 										fontWeight: 'bold',
 										background: '#f4f4f4c7',
 										padding: '7px',
-										
 									}}
 								>
 									{column.render('Header')}
@@ -97,7 +107,6 @@ function CandidateTable(props) {
 										style={{
 											padding: '20px',
 											background: '#f4f4f466',
-											
 										}}
 									>
 										{cell.render('Cell')}
