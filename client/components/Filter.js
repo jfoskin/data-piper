@@ -13,7 +13,7 @@ export function Filter({
 	}, 300);
 	return (
 		<div className='tableSearch'>
-			<h3>Search:</h3>
+			<label id='searchlabel'>Search:</label>
 			<input
 				value={value || ""}
 				onChange={(e) => {

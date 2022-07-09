@@ -1,62 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import CandidateList from './CandidateList';
 import Home from './Home';
 import NotFound from './NotFound';
+import Modal from './Modal';
+import CreateCandidate from './CreateCandidate';
 
-class App extends React.Component {
-	render() {
-		return (
-			<Router>
-				<div>
-					<nav className="navContainer">
-						<div className='link-container'>
-						<div>
-							<span className="navLink1">
-                                {/* this image will be the data piper logo that will also link to home */}
-								<img
-									src="../public/data-piper-icon.png"
-									id="navlogo"
-								/>
-							</span>
-                            {/* this home link will be connected to the logo */}
-							{/* <span>
-								<Link to="/" className="navLink1" id="another1">
-									Home
-								</Link>
-							</span> */}
-						</div>
-						<div>
-							<Link className="navLink" to="/candidate">
-								Candidate List
-							</Link>
-                            {/* possibly will add another link that will be a clients list that will then link to another page of candidates based on the client */}
-							{/* <Link className="navLink" to="/projects">
-								Projects
-							</Link> */}
-						</div>
-						<div>
-							<Link className="navLink" to="/candidate">
+const App = (props) => {
+	const [showModal, setModalIsShowing] = useState(false);
+	return (
+		<Router>
+			<div>
+				<nav className="header">
+					<Link to="/" className="logo" >
+						<img src="https://i.postimg.cc/8cHbCWH9/data-piper-icon.png" />
+					</Link>
+					<ul className="main-nav">
+						<li>
+							<Link to="/">Home</Link>
+						</li>
+						<li>
+							<Link to="/candidate">Candidate List</Link>
+						</li>
+						<li>
+							<button
+								onClick={() => {
+									setModalIsShowing(true);
+								}}
+								id="navbutton"
+							>
 								New Candidate
-							</Link>
-                            {/* possibly will add another link that will be a clients list that will then link to another page of candidates based on the client */}
-							{/* <Link className="navLink" to="/projects">
-								Projects
-							</Link> */}
-						</div>
-						</div>
-						<div class="search-container">
-   							<form action="" >
-     							<input type="text" placeholder="Search..." name="search" id='searchNav'/>
-   							</form>
-						</div>
-					</nav>
-					<h2> Welcome to the Candidate Source List </h2>
+							</button>
+							{showModal && (
+								<Modal
+									onClose={() => {
+										setModalIsShowing(false);
+									}}
+								>
+									<CreateCandidate />
+								</Modal>
+							)}
+						</li>
+					</ul>
+				</nav>
+				<main>
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route exact path="/candidate" component={CandidateList} />
+						<Route component={NotFound} />
+					</Switch>
+				</main>
+				{/* <div>
 					<CandidateList />
-				</div>
-			</Router>
-		);
-	}
-}
+				</div> */}
+			</div>
+		</Router>
+	);
+};
 
 export default App;

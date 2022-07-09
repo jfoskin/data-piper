@@ -44,6 +44,7 @@ export const fetchCandidates = () => {
 export const createCandidate = (candidate, history) => {
 	return async (dispatch) => {
 		const { data: created } = await axios.post('/api/candidate', candidate);
+		console.log(data)
 		dispatch(_createCandidate(created));
 		history.push('/');
 	};

@@ -45,7 +45,7 @@ const Client = dbConnection.define('Client', {
 		},
 	},
     Quantity: {
-		type: Sequelize.FLOAT,
+		type: Sequelize.INTEGER,
 		defaultValue: 1,
 		validate: {
 			min: 0,

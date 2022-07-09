@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useGlobalFilter, useSortBy, useTable } from 'react-table';
 import { Filter } from './Filter';
 
-export function CandidateTable(props) {
+function CandidateTable(props) {
 	const [candidates, setCandidates] = useState([]);
 
 	const getCandidates = async () => {
@@ -24,7 +24,7 @@ export function CandidateTable(props) {
 	const candidatesColumns = useMemo(
 		() =>
 			candidates[0]
-				? Object.keys(candidates[0]).map((key) => {
+				? Object.keys(candidates[0]).filter((key) => key !== "id" && key !== "createdAt" && key !== "updatedAt").map((key) => {
 						return { Header: key, accessor: key };
 				  })
 				: [],
@@ -59,7 +59,7 @@ export function CandidateTable(props) {
 				setGlobalFilter={setGlobalFilter}
 				globalFilter={state.globalFilter}
 			/>
-			<table {...getTableProps()} style={{ border: 'solid 1px blue', padding: '0.5rem' }}>
+			<table {...getTableProps()} style={{ border: 'solid 1px blue', padding: '0.5rem', marginLeft: '3rem', marginRight: '3rem' }}>
 				<thead>
 					{headerGroups.map((headerGroup) => (
 						<tr {...headerGroup.getHeaderGroupProps()}>
@@ -68,9 +68,10 @@ export function CandidateTable(props) {
 									{...column.getHeaderProps(column.getSortByToggleProps())}
 									style={{
 										borderBottom: 'solid 3px #52A8ff',
-										background: 'aliceblue',
-										color: 'black',
+										color: '#ff9800',
 										fontWeight: 'bold',
+										background: '#f4f4f4c7',
+										padding: '7px',
 										
 									}}
 								>
@@ -95,8 +96,7 @@ export function CandidateTable(props) {
 										{...cell.getCellProps()}
 										style={{
 											padding: '20px',
-											border: 'solid 1px navy',
-											background: '#40404008',
+											background: '#f4f4f466',
 											
 										}}
 									>
@@ -111,3 +111,5 @@ export function CandidateTable(props) {
 		</>
 	);
 }
+
+export default CandidateTable;
